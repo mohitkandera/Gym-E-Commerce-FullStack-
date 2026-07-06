@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+
+.nav-item.dropdown {
+  position: relative;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 40%;
+
+  
+}

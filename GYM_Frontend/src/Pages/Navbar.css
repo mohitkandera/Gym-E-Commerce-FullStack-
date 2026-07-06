@@ -1,0 +1,54 @@
+.nav-item.dropdown {
+  position: relative;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 40%;
+}
+
+ /*  product .css  */
+
+
+.custom-border {
+  position: relative;
+}
+
+.custom-border::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 2px;
+  background-color: red;
+}
+
+
+.custom-span {
+  border-bottom: 2px solid red;
+  padding-bottom: 5px;
+}
+
+
+.menu-item {
+  padding: 10px;
+}
+
+.menu-item:hover {
+  background-color: red;
+  color: white;
+}
+
+.myText{
+  color : black;
+  transition: 0.3m;
+}
+.myText:hover{
+  color: red;
+}
