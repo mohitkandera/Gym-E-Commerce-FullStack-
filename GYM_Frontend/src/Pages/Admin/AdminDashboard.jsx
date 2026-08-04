@@ -6,12 +6,9 @@ const AdminDashboard = () => {
     return (
        
         <div>
-        
-                 
-
                   <div className="container mt-5">
             <h2 className="mb-4 mt-5">Admin Dashboard</h2>
-
+            <button><Link to="/">Product Page</Link></button>
             <div className="row">
 
                 <div className="col-md-4 mb-4">

@@ -10,6 +10,8 @@ import AddProduct from "./Pages/Admin/AddProduct";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 // import UserList from "./Pages/Admin/UserList";
 import UserList from "./Pages/Admin/UserList";
+
+
 // import Orders from "../src/Pages/Orders";
 
 function App() {
@@ -26,13 +28,14 @@ function App() {
     <Routes>
          <Route path="/login" element={<Login />} />
          <Route path="/Register" element={<Register />} />
-         <Route path="/Cart" element={<Cart />} />
-       
+         <Route path="/Cart" element={<Cart/>} />
+         {/* <Route path="/Products" element={<Products/>} /> */}
     </Routes>
-    <Routes>
+    <Routes>  // Admin Routes
        <Route path="/admin" element={<AdminDashboard />} />
        <Route path="admin/AddProduct" element={<AddProduct/>} />
        <Route path="/admin/users" element={<UserList/>} />
+       
     </Routes>
     </BrowserRouter>
     

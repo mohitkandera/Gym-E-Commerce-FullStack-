@@ -4,16 +4,12 @@ import axios from "axios";
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
 
-  useEffect(() => {
-    loadCart();
-  }, []);
-
   const loadCart = async () => {
     try {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        "https://localhost:7036/api/cart",
+        "https://localhost:7036/api/CartItems",
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -27,12 +23,16 @@ function Cart() {
     }
   };
 
+  useEffect(() => {
+    loadCart();
+  }, []);
+
   const removeItem = async (id) => {
     try {
       const token = localStorage.getItem("token");
 
       await axios.delete(
-        `https://localhost:7036/api/cart/${id}`,
+        `https://localhost:7036/api/CartItems/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`
