@@ -28,6 +28,14 @@ A full-stack Gym E-Commerce web application built using **React**, **ASP.NET Cor
 * View All Orders
 * Update Order Status
 
+
+
+* you can check the Admin Pages :-
+  Email = mohit.krishanwal9557@gmail.com
+  pass = mohit021
+
+
+
 ---
 
 ## 🛠️ Tech Stack
