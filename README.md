@@ -111,7 +111,7 @@ Gym-Ecommerce/
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/mohitkandera/Gym-Ecommerce.git
+https://github.com/mohitkandera/Gym-E-Commerce-FullStack-.git
 ```
 
 ### Frontend
