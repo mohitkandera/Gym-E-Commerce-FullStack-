@@ -4,3 +4,4 @@ GET {{GYM_Backend_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+

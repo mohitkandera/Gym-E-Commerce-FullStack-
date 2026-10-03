@@ -16,3 +16,22 @@
 
   
 }
+
+
+.menu-item{
+    transition: .3s;
+}
+
+.menu-item:hover{
+    background-color:#d9d9d9 !important;
+}
+
+.menu-item .menu-title{
+    transition:.3s;
+    color:white;
+}
+
+.menu-item:hover .menu-title{
+    background:#000 !important;
+    color:#FFD700;
+}

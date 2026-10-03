@@ -5,7 +5,7 @@ import certified2 from '../assets/certified.jpg'
 function Footer() {
     return (
         <div className='row h-220 bg-dark text-white p-5 border-top border-secondary border-bottom '>
-            <div class="col-md-4 p-4 border-end border-bottom border-secondary">
+            <div className="col-md-4 p-4 border-end border-bottom border-secondary">
                 <div className='bg-white h-20 align-item-center justify-content-center d-flex'>  <img src={websiteLogo} alt="Logo" width="200" />
                 </div>
                

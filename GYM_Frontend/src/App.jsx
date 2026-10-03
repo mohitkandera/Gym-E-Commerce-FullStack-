@@ -10,37 +10,44 @@ import AddProduct from "./Pages/Admin/AddProduct";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 // import UserList from "./Pages/Admin/UserList";
 import UserList from "./Pages/Admin/UserList";
+import Treadmills from "./Pages/ProductPages/Treadmills";
+ import Excercisebikes from "./Pages/ProductPages/ExcerciseBikes";
+import { RiOutlet2Line } from "react-icons/ri";
 
 
-// import Orders from "../src/Pages/Orders";
 
 function App() {
 
   return (
-    
+
 
     <BrowserRouter>
-    
-    <Routes>
-       {/* <Route path="/" element={<Navbar/>} /> */}
-      <Route path="/" element={ <div> <Navbar/><Products/></div>} />
-    </Routes>
-    <Routes>
-         <Route path="/login" element={<Login />} />
-         <Route path="/Register" element={<Register />} />
-         <Route path="/Cart" element={<Cart/>} />
-         {/* <Route path="/Products" element={<Products/>} /> */}
-    </Routes>
-    <Routes>  // Admin Routes
-       <Route path="/admin" element={<AdminDashboard />} />
-       <Route path="admin/AddProduct" element={<AddProduct/>} />
-       <Route path="/admin/users" element={<UserList/>} />
+     <Routes>
+        <Route path="/" element={<div> <Navbar /><Products /></div>} />
+        
+          
+      </Routes> 
+      <Routes>
+       <Route path="/login" element={<Login />} />
+        <Route path="/Register" element={<Register />} />
+        <Route path="/cart" element={<Cart/>} />
+        <Route path="/treadmills" element={<Treadmills />} />
+        <Route path="/" element={<Products />} />
+        <Route path="/excercisebikes" element={<Excercisebikes />} />
+        
        
-    </Routes>
+        
+      </Routes>  
+       <Routes>  // Admin Routes
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="admin/AddProduct" element={<AddProduct />} />
+        <Route path="/admin/users" element={<UserList />} />
+
+      </Routes>  
     </BrowserRouter>
-    
-    
-   
+
+
+
   );
 }
 

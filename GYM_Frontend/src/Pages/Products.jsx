@@ -1,5 +1,6 @@
 
 import './Navbar.css';
+// import './app.css';
 import slide1 from '../assets/slide1.jpg';
 import slide2 from '../assets/slide2.jpg';
 import slide3 from '../assets/slide3.jpg';
@@ -60,6 +61,8 @@ import Nhai from '../assets/Nhai.jpg'
 import ProductSlider from './GymSupplement';
 import Footer from './Footer';
 import { FaArrowRight } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 
@@ -73,6 +76,7 @@ function Products() {
 
 
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadProducts();
@@ -101,6 +105,36 @@ function Products() {
       wrap: true,
     });
   }, []);
+
+const addToCart = async(product) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.post(
+      "https://localhost:7036/api/CartItems",
+      {
+        productId: product.id,
+        quantity: 1
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      }
+    );
+
+    console.log("Added To Cart:", response.data);
+     navigate("/cart");
+
+    alert("Product Added To Cart");
+
+  } catch (error) {
+    console.log("Add To Cart Error:", error.response?.data || error);
+    alert("Product could not be added to cart");
+  }
+
+}
 
 
 
@@ -150,7 +184,7 @@ function Products() {
       </div>
 
 
-      <div className="h-55 gap-20 d-flex justify-content-evenly text-align-center align-items-center" style={{ backgroundColor: '#EEEEEE' }}>
+      {/* <div className="h-55 gap-20 d-flex justify-content-evenly text-align-center align-items-center" style={{ backgroundColor: '#EEEEEE' }}>
 
         <div className="text-center justify-content-center align-items-center">
           <h1 className="text-center justify-content-center align-items-center text-black pl-20"><CiDumbbell /></h1>
@@ -167,7 +201,123 @@ function Products() {
           <h2 className="text-center text-black">Personalised Equipment Finder </h2>
           <h5 className='fw-normal'>Equipment That Fits you</h5>
         </div>
+      </div> */}
+
+
+<div
+  className="py-5"
+  style={{ backgroundColor: "#f5f5f5" }}
+>
+  <div className="container">
+    <div className="row g-4 justify-content-center">
+
+      {/* Card 1 */}
+      <div className="col-md-4">
+        <div
+          className="text-center bg-white rounded-4 p-4 h-100 shadow-sm"
+          style={{ transition: "0.3s" }}
+        >
+          <div
+            className="mx-auto mb-3 d-flex justify-content-center align-items-center rounded-circle"
+            style={{
+              width: "70px",
+              height: "70px",
+              backgroundColor: "#e8f0ff",
+              color: "#0d6efd",
+            }}
+          >
+            <CiDumbbell size={38} />
+          </div>
+
+          <h3 className="fw-bold text-dark mb-2">
+            Commercial Gym Setup
+          </h3>
+
+          <p className="text-secondary mb-0">
+            Complete gym setup packages designed for professional fitness centers.
+          </p>
+        </div>
       </div>
+
+      {/* Card 2 */}
+      <div className="col-md-4">
+        <div
+          className="text-center bg-white rounded-4 p-4 h-100 shadow-sm"
+          style={{ transition: "0.3s" }}
+        >
+          <div
+            className="mx-auto mb-3 d-flex justify-content-center align-items-center rounded-circle"
+            style={{
+              width: "70px",
+              height: "70px",
+              backgroundColor: "#e8f0ff",
+              color: "#0d6efd",
+            }}
+          >
+            <VscTools size={38} />
+          </div>
+
+          <h3 className="fw-bold text-dark mb-2">
+            Support
+          </h3>
+
+          <p className="text-secondary mb-0">
+            Get hassle-free support and assistance whenever you need it.
+          </p>
+        </div>
+      </div>
+
+      {/* Card 3 */}
+      <div className="col-md-4">
+        <div
+          className="text-center bg-white rounded-4 p-4 h-100 shadow-sm"
+          style={{ transition: "0.3s" }}
+        >
+          <div
+            className="mx-auto mb-3 d-flex justify-content-center align-items-center rounded-circle"
+            style={{
+              width: "70px",
+              height: "70px",
+              backgroundColor: "#e8f0ff",
+              color: "#0d6efd",
+            }}
+          >
+            <VscSearchSparkle size={38} />
+          </div>
+
+          <h3 className="fw-bold text-dark mb-2">
+            Personalised Equipment Finder
+          </h3>
+
+          <p className="text-secondary mb-0">
+            Find the right equipment that perfectly fits your fitness needs.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -183,11 +333,19 @@ function Products() {
 
         {/* Left Half */}
         <div className="col-md-6">
-          <div className="card h-100 card h-100 border-0 menu-item" style={{ backgroundColor: '#EEEEEE', cursor: 'pointer' }}>
-            <span className="  text-right  align-items-right fw-8 text-white px-3 p-3 " style={{ backgroundColor: '#FF0008' }} >TREADMILLS</span>
-            <img src={Traidmills} className="card-img-top" />
+         <Link to="/treadmills"
+  className="card h-100 border-0 menu-item"
+  style={{ backgroundColor: "#EEEEEE", cursor: "pointer" }}
+>
+  <span
+    className="badge rounded-2 p-3 menu-title text-dark fw-bold"
+  
+  >
+    TREADMILLS
+  </span>
 
-          </div>
+  <img src={Traidmills} className="card-img-top" alt="Treadmills" />
+</Link>
         </div>
 
         {/* Right Half */}
@@ -227,15 +385,15 @@ function Products() {
       </div>
 
       <div className="row d-flex gap-1 pt-10 p-10" >
-        <div className="col-3  h-100 card m-0 " style={{ backgroundColor: '#EEEEEE', width: '24%', cursor: 'pointer' }}  >
+        <Link to="/excercisebikes" className="col-3  h-100 card m-0 " style={{ backgroundColor: '#EEEEEE', width: '24%', cursor: 'pointer' }}  >
           <span className="  text-right  align-items-right fw-8 text-dark px-3 p-3 fw-bold  " >EXERCISE BIKES</span>
           <img src={ExerBikes} className="card-img-top" />
-        </div>
+        </Link>
 
-        <div className="col-3 h-100 card " style={{ backgroundColor: '#EEEEEE', width: '24%', cursor: 'pointer' }}>
+        <Link to="/treadmills" className="col-3 h-100 card " style={{ backgroundColor: '#EEEEEE', width: '24%', cursor: 'pointer' }}>
           <span className="  text-right  align-items-right fw-8 text-dark px-3 p-3 fw-bold " >COMMERCIAL CARDIO</span>
           <img src={Cardio} className="card-img-top" />
-        </div>
+        </Link>
 
         <div className="col-3 h-100 card " style={{ backgroundColor: '#EEEEEE', width: '24%', cursor: 'pointer' }}>
           <span className="  text-right  align-items-right fw-8 text-dark px-3 p-3 fw-bold " >STRENGTH</span>
@@ -601,9 +759,13 @@ function Products() {
 
             <h5 className="text-success">₹{product.price}</h5>
 
-            <Link to="/Cart" className="btn btn-primary mt-auto w-100">
-              Add To Cart
-            </Link>
+            <button
+  type="button"
+  className="btn btn-primary mt-auto w-100"
+  onClick={() => addToCart(product)}
+>
+  Add To Cart
+</button>
 
           </div>
         </div>
@@ -612,7 +774,7 @@ function Products() {
   </div>
 </div>
 
-
+{/* 
       <div className="h-55 gap-30 mt-10 d-flex justify-content-evenly text-align-center align-items-center p-10" style={{ backgroundColor: '#EEEEEE' }}>
 
         <div className="text-center justify-content-center align-items-center">
@@ -631,7 +793,187 @@ function Products() {
           <h1 className="text-center justify-con text-black pl-30"><img src={mapIndia} alt="" /></h1>
           <p>Nationwide Service Network On site service anywhere in India</p>
         </div>
+      </div> */}
+
+
+
+<div
+  className="py-5 mt-4"
+  style={{
+    backgroundColor: "#111827",
+  }}
+>
+  <div className="container">
+    
+    {/* Section Heading */}
+    <div className="text-center mb-4">
+      <h2 className="fw-bold text-white mb-2">
+        Why Choose Us?
+      </h2>
+      <p className="text-secondary mb-0" style={{ color: "#cbd5e1" }}>
+        Reliable service, quality equipment and hassle-free delivery
+      </p>
+    </div>
+
+    <div className="row g-3">
+
+      {/* Service 1 */}
+      <div className="col-12 col-md-6 col-lg-3">
+        <div
+          className="bg-white rounded-4 p-4 h-100 text-center"
+          style={{
+            borderBottom: "4px solid #0d6efd",
+          }}
+        >
+          <div
+            className="d-flex justify-content-center align-items-center mx-auto mb-3"
+            style={{
+              width: "75px",
+              height: "75px",
+              backgroundColor: "#eff6ff",
+              borderRadius: "20px",
+            }}
+          >
+            <img
+              src={location}
+              alt="On-Site Service"
+              style={{
+                width: "45px",
+                height: "45px",
+                objectFit: "contain",
+              }}
+            />
+          </div>
+
+          <h5 className="fw-bold text-dark">
+            On-Site Service
+          </h5>
+
+          <p className="text-secondary mb-0 small">
+            On-site service available across India for your convenience.
+          </p>
+        </div>
       </div>
+
+      {/* Service 2 */}
+      <div className="col-12 col-md-6 col-lg-3">
+        <div
+          className="bg-white rounded-4 p-4 h-100 text-center"
+          style={{
+            borderBottom: "4px solid #198754",
+          }}
+        >
+          <div
+            className="d-flex justify-content-center align-items-center mx-auto mb-3"
+            style={{
+              width: "75px",
+              height: "75px",
+              backgroundColor: "#ecfdf5",
+              borderRadius: "20px",
+            }}
+          >
+            <img
+              src={certified}
+              alt="Certified Quality"
+              style={{
+                width: "45px",
+                height: "45px",
+                objectFit: "contain",
+              }}
+            />
+          </div>
+
+          <h5 className="fw-bold text-dark">
+            Certified Quality
+          </h5>
+
+          <p className="text-secondary mb-0 small">
+            Quality products with CE, GS and RoHS certification.
+          </p>
+        </div>
+      </div>
+
+      {/* Service 3 */}
+      <div className="col-12 col-md-6 col-lg-3">
+        <div
+          className="bg-white rounded-4 p-4 h-100 text-center"
+          style={{
+            borderBottom: "4px solid #fd7e14",
+          }}
+        >
+          <div
+            className="d-flex justify-content-center align-items-center mx-auto mb-3"
+            style={{
+              width: "75px",
+              height: "75px",
+              backgroundColor: "#fff7ed",
+              borderRadius: "20px",
+            }}
+          >
+            <img
+              src={bus}
+              alt="Fast Delivery"
+              style={{
+                width: "48px",
+                height: "48px",
+                objectFit: "contain",
+              }}
+            />
+          </div>
+
+          <h5 className="fw-bold text-dark">
+            Fast Delivery
+          </h5>
+
+          <p className="text-secondary mb-0 small">
+            Free delivery with swift and hassle-free shipping.
+          </p>
+        </div>
+      </div>
+
+      {/* Service 4 */}
+      <div className="col-12 col-md-6 col-lg-3">
+        <div
+          className="bg-white rounded-4 p-4 h-100 text-center"
+          style={{
+            borderBottom: "4px solid #6f42c1",
+          }}
+        >
+          <div
+            className="d-flex justify-content-center align-items-center mx-auto mb-3"
+            style={{
+              width: "75px",
+              height: "75px",
+              backgroundColor: "#f5f3ff",
+              borderRadius: "20px",
+            }}
+          >
+            <img
+              src={mapIndia}
+              alt="Nationwide Service"
+              style={{
+                width: "48px",
+                height: "48px",
+                objectFit: "contain",
+              }}
+            />
+          </div>
+
+          <h5 className="fw-bold text-dark">
+            Nationwide Network
+          </h5>
+
+          <p className="text-secondary mb-0 small">
+            Service network available across India with on-site support.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 
       <div className='pt-30 container align-item-center justify-content-center '>
         <h2 className='align-item-center justify-content-center fw-bold d-flex pb-10 '>OUR BRANDS</h2>
@@ -646,7 +988,7 @@ function Products() {
         <div className='container p-10'>
           <h6 className='fw-light'>Hear It From The</h6>
           <h2>CELEBRITY THEMSELVES</h2></div>
-        <div className='container d-flex  gap-10 justify-content-evenly p-5'>
+        {/* <div className='container d-flex  gap-10 justify-content-evenly p-5'>
           <div className='card bg-black border-0 text-white ' style={{ width: '60%' }}>
             <img src={Celebrity} alt="" />
             <h5 className='fw-bold p-2'>Manish Malthotra</h5>
@@ -667,7 +1009,68 @@ function Products() {
             <h5 className='fw-bold p-2'>Shilpa Shetty</h5>
             <p className='fw-bold p-2'>Acctress</p>
           </div>
+        </div> */}
+
+<div className="container py-5">
+  <div className="row g-4">
+
+    <div className="col-12 col-sm-6 col-lg-3">
+      <div className="card bg-black border-0 text-white rounded-4 overflow-hidden shadow h-100">
+        <img src={Celebrity} alt="" className="w-100" style={{ height: "280px", objectFit: "cover" }} />
+        <div className="p-3">
+          <h5 className="fw-bold mb-1">Manish Malhotra</h5>
+          <p className="text-secondary mb-0">Fashion Designer</p>
         </div>
+      </div>
+    </div>
+
+    <div className="col-12 col-sm-6 col-lg-3">
+      <div className="card bg-black border-0 text-white rounded-4 overflow-hidden shadow h-100">
+        <img src={Celebrity2} alt="" className="w-100" style={{ height: "280px", objectFit: "cover" }} />
+        <div className="p-3">
+          <h5 className="fw-bold mb-1">Diana Penty</h5>
+          <p className="text-secondary mb-0">Actress</p>
+        </div>
+      </div>
+    </div>
+
+    <div className="col-12 col-sm-6 col-lg-3">
+      <div className="card bg-black border-0 text-white rounded-4 overflow-hidden shadow h-100">
+        <img src={Celebrity3} alt="" className="w-100" style={{ height: "280px", objectFit: "cover" }} />
+        <div className="p-3">
+          <h5 className="fw-bold mb-1">Armaan Malik</h5>
+          <p className="text-secondary mb-0">Actor</p>
+        </div>
+      </div>
+    </div>
+
+    <div className="col-12 col-sm-6 col-lg-3">
+      <div className="card bg-black border-0 text-white rounded-4 overflow-hidden shadow h-100">
+        <img src={Celebrity4} alt="" className="w-100" style={{ height: "280px", objectFit: "cover" }} />
+        <div className="p-3">
+          <h5 className="fw-bold mb-1">Shilpa Shetty</h5>
+          <p className="text-secondary mb-0">Actress</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       </div>
       <div className='align-item-center d-flex flex-column justify-content-center pt-20 pb-20'>
@@ -762,6 +1165,17 @@ function Products() {
 }
 
 export default Products;
+
+
+
+
+
+
+
+
+
+
+
 
 
 

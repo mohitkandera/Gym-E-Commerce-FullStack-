@@ -1,4 +1,4 @@
-.nav-item.dropdown {
+/* .nav-item.dropdown {
   position: relative;
 }
 
@@ -7,14 +7,12 @@
 }
 
 .dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 40%;
-}
+  /* position: absolute; */
+
 
  /*  product .css  */
 
-
+/*
 .custom-border {
   position: relative;
 }
@@ -51,4 +49,22 @@
 }
 .myText:hover{
   color: red;
+} */
+
+.menu-item{
+    transition: .2s;
 }
+
+.menu-item:hover{
+    background-color:#ced4da !important;
+}
+
+.menu-item .menu-title{
+    transition:.3s;
+    color:white;
+}
+
+/* .menu-item:hover .menu-title{
+    background:#000 !important;
+    color:#FFD700;
+} */
